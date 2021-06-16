@@ -1,0 +1,31 @@
+ion-content {
+  --ion-background-color: #F4F5FA;
+}
+
+ion-header {
+  position: absolute;
+}
+
+// ion-footer {
+//   position: absolute;
+// }
+
+ion-card {
+  --ion-background-color: transparent;
+  box-shadow: none !important;
+}
+
+ion-toolbar {
+  --ion-background-color: transparent;
+  --opacity: 0;
+}
+
+.btns {
+  text-align: center;
+  margin-top: 20px;
+  --ion-color-primary: #06593B;
+}
+
+// .loginBtn {
+//   --ion-color-primary: #06593B;
+// }
