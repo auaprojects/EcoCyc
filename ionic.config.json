@@ -1,0 +1,7 @@
+{
+  "name": "EcoCyc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
