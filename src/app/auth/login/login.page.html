@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="login"></ion-back-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <ion-img src="../../../assets/images/header_login.png"></ion-img>
+    <div style="display: flex; justify-content: center;">
+      <ion-img src="../../../assets/images/tmp_logo.png" style="width: 207px; height: 132px;"></ion-img>
+    </div>
+  </ion-card>
+  <ion-card-content>
+    <form [formGroup]="validationFormUser">
+      <p style="font-size: 30px; padding-top: 20px; text-align: center;">Sign In</p>
+      <div class="wrapForm">
+        <ion-item>
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          <!-- <ion-label> Email -->
+          <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>
+          <!-- </ion-label> -->
+        </ion-item>
+        <div>
+          <ng-container *ngFor="let validation of validationUserMessage.email">
+            <div class="error_message"
+              *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)">
+              {{validation.message}}
+            </div>
+          </ng-container>
+        </div>
+
+        <ion-item>
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <!-- <ion-label> Password -->
+          <ion-input formControlName="password" type="password" placeholder="**********"></ion-input>
+          <!-- </ion-label> -->
+        </ion-item>
+        <div>
+          <ng-container *ngFor="let validation of validationUserMessage.password">
+            <div class="error_message"
+              *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)">
+              {{validation.message}}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="passwordForgot">
+        <ion-button fill="clear" class="ion-no-padding">
+          Forgot Password?
+        </ion-button>
+      </div>
+      <div class="signBtnWrap">
+        <ion-button fill="solid" class="signBtn" shape="round" (click)="loginUser(validationFormUser.value)" [disabled]="!validationFormUser.valid">
+          Login
+        </ion-button>
+      </div>
+      <div class="socialBtns">
+        <p style="text-align: center;">Or Login Via</p>
+        <ion-button fill="clear" shape="round" class="googlebtn ion-no-padding">
+          <ion-img src="../../../assets/images/google.png"></ion-img>
+        </ion-button>
+      </div>
+      <div class="endText">
+        <ion-card-subtitle>Don't have an account? <span style="font-weight: bold; color: black;"><a routerLink="/signup">Sign UP</a></span>
+        </ion-card-subtitle>
+      </div>
+    </form>
+  </ion-card-content>
+</ion-content>

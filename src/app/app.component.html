@@ -1,3 +1,43 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="main" menuId="main-menu" side="start" type="overlay" style="background-color: #F4F5FA;">
+    <!-- <ion-header>
+      <ion-toolbar>
+        <ion-title>Awesome avocado menu</ion-title>
+      </ion-toolbar>
+    </ion-header> -->
+    <ion-content>
+      <div class="menu-hearder-bg"></div>
+      <div class="hearder-content">
+        <img src="../assets/images/tmp_logo.png" alt="">
+        <ion-label>
+          <h1>Dr. Test Mann</h1>
+          <p>Dermathologist</p>
+        </ion-label>
+      </div>
+      <div class="action-button">
+        <ion-button>
+          <ion-icon slot="start" name="add"></ion-icon> New Request
+        </ion-button>
+      </div>
+
+      <ion-list class="menu-items" lines="none">
+        <ion-item>
+          <ion-icon name="pie-chart-outline"></ion-icon> Dashboard
+        </ion-item>
+        <ion-item>
+          <ion-icon name="browsers-outline"></ion-icon> Post sessions
+        </ion-item>
+        <ion-item class="active">
+          <ion-icon name="pie-chart-outline"></ion-icon> Live sessions
+        </ion-item>
+        <ion-item>
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon> Messages
+        </ion-item>
+        <ion-item>
+          <ion-icon name="exit-outline"></ion-icon> Sign out
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

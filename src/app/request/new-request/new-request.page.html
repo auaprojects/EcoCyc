@@ -1,0 +1,113 @@
+
+<!-- <ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">My Navigation Bar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content> -->
+
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="start" size="large" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!requestForm.valid">
+        <ion-icon size="large" name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <div #img class="header-image" [style.background-image]="'url(' + data + ')'">
+  </div>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>New Request</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <form *ngIf="requestForm" [formGroup]=requestForm>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label><ion-icon name="folder-outline"></ion-icon> Item Information</ion-label>
+        </ion-item-divider>
+
+        <ion-item lines="none">
+          <ion-label>Category &nbsp;<span style="color: red;">*</span></ion-label>
+          <ion-select [(ngModel)]="categorySelected" [ngModelOptions]="{standalone: true}" okText="Select" cancelText="Dismiss">
+            <ion-select-option *ngFor="let cat of categories" [value]="cat">{{cat.value}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label position="floating">Item Fullname &nbsp;<span style="color: red;">*</span></ion-label>
+          <ion-input formControlName="fullname"></ion-input>
+        </ion-item>
+        <ion-row *ngIf="!requestForm.get('fullname').valid && requestForm.get('fullname').touched">
+          <ion-col size-sm="6" offset-sm="3">
+            <span style="color: red;">Fullname Name is empty</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-item>
+          <ion-label>Quantity: &nbsp;<span style="color: red;">*</span></ion-label>
+          <ion-icon style="margin: 5px;" name="remove-circle" size="large" (click)="decrement()"></ion-icon>
+            {{currentNumber}}
+            <ion-icon style="margin: 5px;" name="add-circle" size="large" (click)="increment()"></ion-icon>
+        </ion-item>
+        <ion-row *ngIf="requestForm.get('quantity').value < 1">
+          <ion-col size-sm="6" offset-sm="3">
+            <span style="color: red;">You have to add quantity</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-item>
+          <ion-label>Weight estimate: </ion-label>
+          <ion-input formControlName="weight" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label><ion-icon name="location-outline"></ion-icon> Pickup Location</ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-label position="stacked">Address &nbsp;<span style="color: red;">*</span></ion-label>
+          <ion-input formControlName="addressLine1" placeholder="Address Line 1*"></ion-input>
+          <ion-input formControlName="addressLine2" placeholder="Address Line 2"></ion-input>
+          <ion-input formControlName="city" placeholder="City *"></ion-input>
+          <ion-input formControlName="state" placeholder="State*"></ion-input>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label><ion-icon name="location-outline"></ion-icon> Pickup Schedule</ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-label>Select Date</ion-label>
+          <ion-datetime formControlName="pickupDate" value="1990-02-19" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label>Select Time</ion-label>
+          <ion-datetime formControlName="pickupTime" display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z"></ion-datetime>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label><ion-icon name="location-outline"></ion-icon> Image</ion-label>
+        </ion-item-divider>
+        <app-image-picker
+            [selectedImage]="requestForm.value.photoURL"
+            (imagePick)="onImagePicked($event)"
+          ></app-image-picker>
+      </ion-item-group>
+    </form>
+  </ion-list>
+</ion-content>

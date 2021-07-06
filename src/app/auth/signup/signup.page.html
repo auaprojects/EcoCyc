@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+  </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="home" size="large" color="dark"></ion-back-button>
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-no-margin">
+    <ion-img src="../../../assets/images/header2.png"></ion-img>
+    <!-- <div style="display: flex; justify-content: center;">
+      <ion-img src="../../../assets/images/tmp_logo.png" style="width: 207px; height: 132px;"></ion-img>
+    </div> -->
+  </ion-card>
+  <ion-card-content>
+    <p style="font-size: 30px; padding-top: 20px; text-align: center;">Sign Up</p>
+    <ion-card-subtitle style="text-align: center;">Create Your account by filling up the form</ion-card-subtitle>
+    <div class="wrapForm">
+      <form #signupForm="ngForm">
+        <ion-item>
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-input [(ngModel)]="user.fullname" name="fullname" type="text" #fullname="ngModel" placeholder="Full Name"
+            required></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!fullname.valid && fullname.touched" lines="none">
+          <ion-text color="danger">Full Name is required</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+          <ion-input type="text" [(ngModel)]="user.phone" name="phone" #phone="ngModel"
+            placeholder="Ex: +254 793625397" required></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!phone.valid && phone.touched" lines="none">
+          <ion-text color="danger">Phone Number is required</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          <ion-input type="text" [(ngModel)]="user.email" name="email" #email="ngModel" placeholder="Email" required></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!email.valid && email.touched" lines="none">
+          <ion-text color="danger">Email is required</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          <ion-input type="password" [(ngModel)]="user.password" name="password" #password="ngModel"
+            placeholder="**********" required></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!password.valid && password.touched" lines="none">
+          <ion-text color="danger">Password is required</ion-text>
+        </ion-item>
+      </form>
+    </div>
+    <div class="signBtnWrap">
+      <ion-button fill="solid" class="signBtn" [disabled]="!signupForm.valid" (click)="onSignup(signupForm)"
+        shape="round">
+        Sign Up
+      </ion-button>
+    </div>
+    <div class="socialBtns">
+      <p style="text-align: center;">Or Sign Up With</p>
+      <ion-button fill="clear" shape="round" class="googlebtn ion-no-padding">
+        <ion-img src="../../../assets/images/google.png"></ion-img>
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-content>

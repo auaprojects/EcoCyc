@@ -1,0 +1,31 @@
+ion-content {
+  position: absolute;
+  // --background: #f1f1f1;
+  --ion-background-color: #F4F5FA;
+
+}
+
+ion-header {
+  ion-toolbar {
+    --ion-background-color: transparent;
+    // --opacity: 0;
+  }
+}
+
+ion-list {
+  ion-item-divider {
+    background-color: #6CC57C;
+  }
+
+  ion-item {
+    lines: none;
+  }
+}
+
+.header-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 30vh;
+  will-change: transform;
+}

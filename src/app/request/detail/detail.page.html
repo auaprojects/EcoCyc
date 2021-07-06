@@ -1,0 +1,73 @@
+
+<ion-content>
+  <div class="header">
+    <!-- <ion-buttons >
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only"  name="arrow-black-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-button fill="solid" shape="round" routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-button fill="solid" shape="round" routerLink="/home">
+        <ion-icon slot="icon-only" name="d-heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <!-- REQUEST DETAIL-->
+  <div class="card">
+    <div class="image">
+      <ion-img src="../../../assets/images/tmp_logo.png"></ion-img>
+    </div>
+
+    <div class="card-content">
+      <div class="card-title">
+        <h1 class="ion-no-margin">Test Title</h1>
+        <!-- <div class="ion-no-margin"></div> -->
+        <p class="ion-no-margin">The price</p>
+      </div>
+    </div>
+
+    <div class="rates">
+      <div class="badge"><ion-icon name="d-time-forward"></ion-icon>30m</div>
+      <div class="badge"><ion-icon name="star-outline"></ion-icon>4.5</div>
+    </div>
+
+    <div class="about">
+      <h1>About</h1>
+      <p>this is a simple description efghrhgfhnjnfhj,hhhhhhhhhshrtghbvdn fgnfnfg n</p>
+    </div>
+  </div>
+</ion-content>
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="solid" shape="round" routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Test Title</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="solid" shape="round" color="light">
+        <ion-icon slot="icon-only" name="share-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true">
+  <div #img class="header-image" [style.background-image]="'url(' + data?.img + ')'">
+  </div>
+
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar color="light">
+      <ion-title size="large">Title2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+</ion-content> -->

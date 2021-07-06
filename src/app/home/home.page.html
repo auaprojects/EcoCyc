@@ -1,20 +1,173 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<!-- <ion-header class="ion-no-border">
+  <ion-toolbar color="primary" no-border>
     <ion-title>
-      Blank
+      Home
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" no-border>
+    <!-- <ion-buttons slot="start">
+      <ion-button menu="main-menu">
+        <img src="../../assets/menu.svg" />
+      </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-menu-button size="large" menu="main-menu"><img src="../../assets/menu.svg" /></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../assets/notification.svg" />
+      </ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="banner">
+    <img src="../../assets/images/header2.png" />
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="caption ion-padding">
+      Your activities <br>
+      on <span style="font-style: italic; color: #6CC57C; font-weight: bold;">EcoCyc</span>
+    </div>
+
+    <div class="search">
+      <ion-item lines="none" class="ion-no-padding">
+        <ion-icon slot="start" name="search-outline"></ion-icon>
+        <ion-input placeholder="Search requests"></ion-input>
+        <ion-button slot='end'>
+          <img src="../../assets/filter.svg" />
+        </ion-button>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="title">
+    <h2>Latest Requests</h2>
+
+    <p>See all</p>
+  </div>
+
+  <div class="event-slider">
+    <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }" class="default-left-padding">
+      <ion-slide (click)="goToDetail()">
+        <ion-col class="ion-text-left">
+          <ion-card>
+            <ion-card-header class="ion-no-padding">
+              <img src="../../assets/events/event1.svg" />
+            </ion-card-header>
+
+            <ion-card-content>
+              <p class="date">17th July, 2021</p>
+              <h2 class="eventname">Conference Table - Extra large</h2>
+              <p class="location"><ion-icon name="location"></ion-icon>Caracas, Venezuela</p>
+
+              <div class="additional-info">
+                <!-- <div class="attendees">
+                  <img src="../../assets/persons/person1.svg" />
+                  <img src="../../assets/persons/person2.svg" />
+                  <img src="../../assets/persons/person3.svg" />
+                  <img src="../../assets/persons/person4.svg" />
+                  <div class="count">
+                    <img src="../../assets/persons/person-placeholder.svg" />
+
+                    <p>+7</p>
+                  </div>
+                </div> -->
+
+                <p class="time">10:00pm</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-slide>
+      <ion-slide>
+        <ion-col class="ion-text-left">
+          <ion-card>
+            <ion-card-header class="ion-no-padding">
+              <img src="../../assets/events/event2.svg" />
+            </ion-card-header>
+
+            <ion-card-content>
+              <p class="date">23th July, 2021</p>
+              <h2 class="eventname">Desk - Fiberboard</h2>
+              <p class="location"><ion-icon name="location"></ion-icon>Caracas, Venezuela</p>
+
+              <div class="additional-info">
+                <!-- <div class="attendees">
+                  <img src="../../assets/persons/person1.svg" />
+                  <img src="../../assets/persons/person2.svg" />
+                  <img src="../../assets/persons/person3.svg" />
+                  <img src="../../assets/persons/person4.svg" />
+                  <div class="count">
+                    <img src="../../assets/persons/person-placeholder.svg" />
+
+                    <p>+3</p>
+                  </div>
+                </div> -->
+
+                <p class="time">10:00pm</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="default-top-padding title">
+    <h2>Activities in figures</h2>
+
+    <p>See all</p>
+  </div>
+
+  <div class="live-event">
+    <img src="../../assets/events/event3.svg" />
+
+    <div class="info">
+      <div class="content">
+        <h6>World Art Day</h6>
+
+        <p class="stats">
+          <span><ion-icon name="eye"></ion-icon>&nbsp;2.3K</span><span><ion-icon name="heart"></ion-icon>&nbsp;3758</span>
+        </p>
+
+        <p class="location"><ion-icon name='location'></ion-icon>Caracas, Venezuela</p>
+
+        <!-- <div class="additional-info">
+          <div class="attendees">
+            <img src="../../assets/persons/person1.svg" />
+            <img src="../../assets/persons/person2.svg" />
+            <img src="../../assets/persons/person3.svg" />
+            <img src="../../assets/persons/person4.svg" />
+            <div class="count">
+              <img src="../../assets/persons/person-placeholder.svg" />
+
+              <p>+3</p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="indicator">
+        <div>Live</div>
+      </div>
+    </div>
   </div>
 </ion-content>
+
