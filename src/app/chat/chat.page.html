@@ -1,0 +1,155 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" no-border>
+    <!-- <ion-buttons slot="start">
+      <ion-button menu="main-menu">
+        <img src="../../assets/menu.svg" />
+      </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-menu-button size="large" menu="main-menu"><img src="../../assets/menu.svg" /></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Chats
+    </ion-title>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../assets/notification.svg" />
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="tabs ion-padding">
+    <ion-segment value="chats" (ionchange)="segmentChange($event)">
+      <ion-segment-button values="chats">
+        <ion-label>Chats</ion-label>
+      </ion-segment-button>
+      <ion-segment-button values="Status">
+        <ion-label>Status</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </div>
+  <div class="chat-list" *ngIf="activeTab == 'Chats' ">
+    <div class="recent-chats ion-padding">
+      <div class="heading">
+        <h2>Recent Chats</h2>
+        <ion-icon name="search-sharp"></ion-icon>
+      </div>
+      <div class="chats">
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person1.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Hello</h2>
+            <p>Typing...</p>
+          </ion-label>
+          <div class="info-div">
+             <p>2:14</p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person2.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Hommy</h2>
+            <p>Let's attack konoha</p>
+          </ion-label>
+          <div class="info-div">
+            <ion-badge>1</ion-badge>
+             <p>4:20</p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person3.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Save my number</h2>
+            <p>I'll talk to you later on</p>
+          </ion-label>
+          <div class="info-div">
+             <p>14:00</p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person4.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Let's talk later on</h2>
+            <p>I am on a meeting....</p>
+          </ion-label>
+          <div class="info-div">
+            <ion-badge>10</ion-badge>
+             <p>12:10</p>
+          </div>
+        </ion-item>
+      </div>
+    </div>
+    <div class="all-chats ion-padding">
+      <div class="heading">
+        <h2>All Chats</h2>
+      </div>
+      <div class="chats">
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person1.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Hello</h2>
+            <p>Do you have your mask?</p>
+          </ion-label>
+          <div class="info-div">
+             <p>2:14</p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person2.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Pending work</h2>
+            <p>We should meet</p>
+          </ion-label>
+          <div class="info-div">
+            <ion-badge>1</ion-badge>
+             <p>4:20</p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person3.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>I have an emergency</h2>
+            <p>I'll be back in a few</p>
+          </ion-label>
+          <div class="info-div">
+             <p>14:00</p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" routerLink="/conversation">
+          <ion-avatar slot="start">
+            <img src="assets/persons/person4.svg">
+          </ion-avatar>
+          <ion-label class="ion-text-nowrap">
+            <h2>Let's talk later on</h2>
+            <p>I am on a meeting....</p>
+          </ion-label>
+          <div class="info-div">
+             <p>12:10</p>
+          </div>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-content>

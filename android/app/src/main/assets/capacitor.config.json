@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "EcoCyc",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

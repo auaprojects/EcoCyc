@@ -38,6 +38,16 @@ const routes: Routes = [
     path: 'home-pro',
     loadChildren: () => import('./home-pro/home-pro.module').then( m => m.HomeProPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+  },  {
+    path: 'conversation',
+    loadChildren: () => import('./conversation/conversation.module').then( m => m.ConversationPageModule)
+  },
+
+
+
 ];
 
 @NgModule({
