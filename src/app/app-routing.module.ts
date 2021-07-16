@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'welcome',
     pathMatch: 'full'
   },
   {
@@ -26,13 +26,15 @@ const routes: Routes = [
     loadChildren: () => import('./auth/signup/signup.module').then( m => m.SignupPageModule)
   },
   {
-    // path: 'detail:id',
-    path: 'detail',
-    loadChildren: () => import('./request/detail/detail.module').then( m => m.DetailPageModule)
+    path: 'detail/:id',
+    // path: 'detail',
+    loadChildren: () => import('./request/detail/detail.module').then( m => m.DetailPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'new-request',
-    loadChildren: () => import('./request/new-request/new-request.module').then( m => m.NewRequestPageModule)
+    loadChildren: () => import('./request/new-request/new-request.module').then( m => m.NewRequestPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'home-pro',

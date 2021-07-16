@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  url: 'https://a3c55334.eu-gb.apigw.appdomain.cloud/ecocyc/'
+  url: 'https://a3c55334.eu-gb.apigw.appdomain.cloud/ecocyc/',
+  urlRequest: 'https://a3c55334.eu-gb.apigw.appdomain.cloud/request/'
 };
 
 export const firebaseConfig = {

@@ -1,5 +1,12 @@
+// ion-header {
+//   .header-button {
+//     --background: #23233c;
+//     --ion-background-color: #fff;
+//   }
+// }
+
 ion-content {
-  --background: #6CC57C;
+  --background: #6cc57c;
   position: relative;
 
   .header {
@@ -8,29 +15,42 @@ ion-content {
     padding: 1rem 0.5rem;
 
     ion-button {
-      height: 40px;
-      width: 40px;
+      --background: #23233c;
+      --ion-background-color: #fff;
+      // --ion-background-color: #fff;
+      // height: 40px;
+      // width: 40px;
 
-      ion-icon {
-        font-size: 2rem;
-      }
+      // ion-icon {
+      //   font-size: 2rem;
+      // }
     }
   }
 
   .card {
-    height: 75%;
+    // height: 75%;
+    // width: 100%;
+    // background: #F4F5FA;
+    // position: absolute;
+    // bottom: 0;
+    // border-radius: 3rem 3rem 0 0;
+    // padding: 2rem;
+
+    height: 100%;
     width: 100%;
-    background: #F4F5FA;
-    position: absolute;
+    background: #f4f5fa;
+    position: relative;
     bottom: 0;
     border-radius: 3rem 3rem 0 0;
-    padding: 2rem;
+    padding: 1.5rem;
 
     .image {
       position: absolute;
       top: -3.5rem;
       width: 50%;
       left: 50%;
+      // width: 180px;
+      // height: 180px;
       transform: translateX(-50%);
     }
 
@@ -50,12 +70,12 @@ ion-content {
     p {
       font-size: 1.2rem;
       // font-weight: 700;
-      color: #ffb800;
+      // color: #ffb800;
     }
 
     .badge {
       margin-right: 1rem;
-      background: #6CC57C;
+      background: #6cc57c;
       color: #fff;
       font-size: 1.2rem;
       display: flex;
@@ -69,24 +89,39 @@ ion-content {
       }
     }
 
-    .rates {
-      display: flex;
-      align-items: center;
-      margin-bottom: 3rem;
+    // .rates {
+    //   display: flex;
+    //   align-items: center;
+    //   margin-bottom: 3rem;
+    // }
+
+    // .about {
+    //   margin-bottom: 2.1rem;
+
+    //   h1 {
+    //     font-weight: 500;
+    //   }
+
+    //   p {
+    //     font-size: 1.1rem;
+    //     line-height: 1.6;
+    //     color: #b9b9b9;
+    //   }
+    // }
+
+    .card-details {
+      border-bottom: 1px solid #b9b9b9;
+      text-align: center;
+
+      h5 {
+        font-weight: bold;
+        color: #6cc57c;
+        text-transform: capitalize;
+      }
     }
 
-    .about {
-      margin-bottom: 2.1rem;
-
-      h1 {
-        font-weight: 500;
-      }
-
-      p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #b9b9b9;
-      }
+    .submit-btn {
+      --ion-color-primary: #23233c;
     }
   }
 }

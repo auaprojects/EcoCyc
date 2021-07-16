@@ -1,13 +1,3 @@
-<!-- <ion-header class="ion-no-border">
-  <ion-toolbar color="primary" no-border>
-    <ion-title>
-      Home
-    </ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header> -->
 
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" no-border>
@@ -24,7 +14,7 @@
 
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button routerLink="/new-request">
         <ion-icon size="large" name="add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -60,113 +50,71 @@
   <div class="title">
     <h2>Latest Requests</h2>
 
-    <p>See all</p>
+    <!-- <p>See all</p> -->
   </div>
 
-  <div class="event-slider">
+  <div *ngIf="requests?.length === 0" style="padding: 15px; margin-bottom: 50px; color: red;">
+    <h2>You have not yet created a request</h2>
+  </div>
+
+  <div *ngIf="requests?.length > 0" class="event-slider">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }" class="default-left-padding">
-      <ion-slide (click)="goToDetail()">
-        <ion-col class="ion-text-left">
+      <ion-slide *ngFor="let request of requests">
+        <ion-col (click)="goToDetail(request)" class="ion-text-left">
           <ion-card>
             <ion-card-header class="ion-no-padding">
-              <img src="../../assets/events/event1.svg" />
+              <img *ngIf="request.photoURL !== ''" [src]="request.photoURL" />
+              <img *ngIf="request.photoURL === ''" src="../../assets/images/default.jpg" />
             </ion-card-header>
 
             <ion-card-content>
-              <p class="date">17th July, 2021</p>
-              <h2 class="eventname">Conference Table - Extra large</h2>
-              <p class="location"><ion-icon name="location"></ion-icon>Caracas, Venezuela</p>
+              <p class="date">{{request.createdAt}}</p>
+              <h2 class="eventname">{{request.category}} - {{request.fullname}}</h2>
+              <p class="location"><ion-icon name="location"></ion-icon>{{request.addressLine1}}, {{request.city}}</p>
 
               <div class="additional-info">
-                <!-- <div class="attendees">
-                  <img src="../../assets/persons/person1.svg" />
-                  <img src="../../assets/persons/person2.svg" />
-                  <img src="../../assets/persons/person3.svg" />
-                  <img src="../../assets/persons/person4.svg" />
-                  <div class="count">
-                    <img src="../../assets/persons/person-placeholder.svg" />
 
-                    <p>+7</p>
-                  </div>
-                </div> -->
-
-                <p class="time">10:00pm</p>
+                <ion-badge color="success" class="time">{{request.status}}</ion-badge>
               </div>
             </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-slide>
-      <ion-slide>
-        <ion-col class="ion-text-left">
-          <ion-card>
-            <ion-card-header class="ion-no-padding">
-              <img src="../../assets/events/event2.svg" />
-            </ion-card-header>
 
-            <ion-card-content>
-              <p class="date">23th July, 2021</p>
-              <h2 class="eventname">Desk - Fiberboard</h2>
-              <p class="location"><ion-icon name="location"></ion-icon>Caracas, Venezuela</p>
-
-              <div class="additional-info">
-                <!-- <div class="attendees">
-                  <img src="../../assets/persons/person1.svg" />
-                  <img src="../../assets/persons/person2.svg" />
-                  <img src="../../assets/persons/person3.svg" />
-                  <img src="../../assets/persons/person4.svg" />
-                  <div class="count">
-                    <img src="../../assets/persons/person-placeholder.svg" />
-
-                    <p>+3</p>
-                  </div>
-                </div> -->
-
-                <p class="time">10:00pm</p>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-slide>
     </ion-slides>
   </div>
 
-  <div class="default-top-padding title">
+  <div *ngIf="requests?.length > 0" class="default-top-padding title">
     <h2>Activities in figures</h2>
 
-    <p>See all</p>
   </div>
 
-  <div class="live-event">
+  <div *ngIf="requests?.length > 0" class="live-event">
     <img src="../../assets/events/event3.svg" />
 
     <div class="info">
-      <div class="content">
-        <h6>World Art Day</h6>
+      <h5 style="color: #364f6b;">Total Requests &nbsp;<ion-badge color="tertiary">{{requests.length}}</ion-badge></h5>
+      <!-- <ion-list>
+        <ion-item lines="none">
+          <ion-label style="color: #364f6b;">Total Requests</ion-label>
+          <ion-badge color="tertiary" slot="end">{{requests.length}}</ion-badge>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label style="color: #364f6b;">Pending Requests</ion-label>
+          <ion-badge color="tertiary" slot="end">34</ion-badge>
+        </ion-item>
+      </ion-list> -->
 
-        <p class="stats">
-          <span><ion-icon name="eye"></ion-icon>&nbsp;2.3K</span><span><ion-icon name="heart"></ion-icon>&nbsp;3758</span>
-        </p>
+      <!-- <div class="content">
+        <h6>Total Requests&nbsp;&nbsp;<ion-badge color="tertiary">34</ion-badge></h6>
+        <h6>Pending Requests</h6>&nbsp;&nbsp;<ion-badge color="tertiary">10</ion-badge>
 
-        <p class="location"><ion-icon name='location'></ion-icon>Caracas, Venezuela</p>
 
-        <!-- <div class="additional-info">
-          <div class="attendees">
-            <img src="../../assets/persons/person1.svg" />
-            <img src="../../assets/persons/person2.svg" />
-            <img src="../../assets/persons/person3.svg" />
-            <img src="../../assets/persons/person4.svg" />
-            <div class="count">
-              <img src="../../assets/persons/person-placeholder.svg" />
+      </div> -->
 
-              <p>+3</p>
-            </div>
-          </div>
-        </div> -->
-      </div>
-
-      <div class="indicator">
+      <!-- <div class="indicator">
         <div>Live</div>
-      </div>
+      </div> -->
     </div>
   </div>
 </ion-content>

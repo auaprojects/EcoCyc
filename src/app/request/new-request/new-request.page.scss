@@ -15,11 +15,28 @@ ion-header {
 ion-list {
   ion-item-divider {
     background-color: #6CC57C;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #fff;
+
+    ion-icon {
+      font-size: 20px;
+    }
   }
 
   ion-item {
     lines: none;
+
+    ion-label {
+      font-weight: bold;
+    }
   }
+}
+
+.header-button {
+  --background: #23233C;
+  --ion-background-color: #fff
 }
 
 .header-image {
@@ -28,4 +45,9 @@ ion-list {
   background-size: cover;
   height: 30vh;
   will-change: transform;
+}
+
+.submit-btn {
+  margin-top: 15px;
+  --ion-color-primary: #23233C
 }

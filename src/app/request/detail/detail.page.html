@@ -1,46 +1,93 @@
-
 <ion-content>
   <div class="header">
-    <!-- <ion-buttons >
-      <ion-button routerLink="/home">
-        <ion-icon slot="icon-only"  name="arrow-black-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
     <ion-buttons slot="start">
-      <ion-button fill="solid" shape="round" routerLink="/home">
-        <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+      <ion-button class="header-button" fill="solid" shape="round" routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons>
+    <!-- <ion-buttons>
       <ion-button fill="solid" shape="round" routerLink="/home">
         <ion-icon slot="icon-only" name="d-heart"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </div>
 
   <!-- REQUEST DETAIL-->
   <div class="card">
     <div class="image">
-      <ion-img src="../../../assets/images/tmp_logo.png"></ion-img>
+      <img *ngIf="currentRequest?.photoURL !== ''" [src]="currentRequest?.photoURL" />
+      <img style="border-radius: 40%;" *ngIf="currentRequest?.photoURL === ''" src="../../assets/images/default.jpg" />
     </div>
 
     <div class="card-content">
       <div class="card-title">
-        <h1 class="ion-no-margin">Test Title</h1>
+        <h1 class="ion-no-margin">{{currentRequest?.fullname}}</h1>
         <!-- <div class="ion-no-margin"></div> -->
-        <p class="ion-no-margin">The price</p>
+        <p class="ion-no-margin">
+          <ion-badge color="success" class="time">{{currentRequest?.status}}</ion-badge>
+        </p>
       </div>
     </div>
 
-    <div class="rates">
-      <div class="badge"><ion-icon name="d-time-forward"></ion-icon>30m</div>
-      <div class="badge"><ion-icon name="star-outline"></ion-icon>4.5</div>
+    <div class="card-details">
+      <h5>Details <ion-icon name="newspaper-outline"></ion-icon>
+      </h5>
+      <h6><span style="font-weight: bold;">Category:</span> {{currentRequest?.category}}</h6>
+      <h6><span style="font-weight: bold;">Quantity:</span> {{currentRequest?.quantity}}</h6>
+      <h6 style="font-weight: bold;">Description</h6>
+      <p style="color: #b9b9b9">{{currentRequest?.description}}</p>
     </div>
 
-    <div class="about">
-      <h1>About</h1>
-      <p>this is a simple description efghrhgfhnjnfhj,hhhhhhhhhshrtghbvdn fgnfnfg n</p>
+    <!-- <div class="about">
+      <h5>Description</h5>
+      <p>{{currentRequest?.description}}</p>
+    </div> -->
+
+    <div class="card-details">
+      <!-- <h3>Address: {{currentRequest?.addressLine1}}, {{currentRequest?.city}}</h3> -->
+      <h5>pickup location <ion-icon name="location-outline"></ion-icon>
+      </h5>
+      <h6>{{currentRequest?.addressLine1}}</h6>
+      <h6>{{currentRequest?.city}}, {{currentRequest?.state}}</h6>
     </div>
+
+    <div class="card-details">
+      <!-- <h3>Address: {{currentRequest?.addressLine1}}, {{currentRequest?.city}}</h3> -->
+      <h5>target pickup time <ion-icon name="calendar-outline"></ion-icon>
+      </h5>
+      <h6>{{currentRequest?.pickupDate}}, {{currentRequest?.pickupTime}}</h6>
+    </div>
+
+    <div class="card-details">
+      <!-- <h3>Address: {{currentRequest?.addressLine1}}, {{currentRequest?.city}}</h3> -->
+      <h5>about owner <ion-icon name="person-outline"></ion-icon>
+      </h5>
+      <h6>{{currentUser?.fullname}}</h6>
+      <h6>{{currentUser?.email}}</h6>
+      <h6>{{currentUser?.phone}}</h6>
+    </div>
+
+    <div>
+      <h5>Created since: <span style="font-weight: bold; font-style: italic;">{{currentRequest?.createdAt}}</span></h5>
+    </div>
+
+
+    <!-- <div class="rates">
+      <div class="badge"><ion-icon name="d-time-forward"></ion-icon>30m</div>
+      <div class="badge"><ion-icon name="star-outline"></ion-icon>4.5</div>
+    </div> -->
+    <div style="text-align: center; margin-top: 30px;">
+      <ion-button color="danger" *ngIf="connectedUser !== null" fill="solid" shape="round">
+        Cancel the request
+      </ion-button>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <ion-button class="submit-btn" *ngIf="connectedUser === null" fill="solid" shape="round">
+        Select for Pickup
+      </ion-button>
+    </div>
+
   </div>
 </ion-content>
 

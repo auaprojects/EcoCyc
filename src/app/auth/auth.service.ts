@@ -121,7 +121,15 @@ export class AuthService {
   getUsers(): Observable<User[]> {
     return this.http.get(`${this.apiURL}users`).pipe(map((res: any) => {
       if (res) {
-        return res.entries as User[];
+        return res.users as User[];
+      }
+    }));
+  }
+
+  getUserById(uid: string): Observable<User> {
+    return this.http.post(`${this.apiURL}user-by-id`, {id: uid}).pipe(map((res: any) => {
+      if (res) {
+        return res.users[0];
       }
     }));
   }

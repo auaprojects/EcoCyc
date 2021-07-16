@@ -1,9 +1,14 @@
+ion-button {
+  --ion-color-primary: #6CC57C
+}
+
 .picker {
   width: 30rem;
   max-width: 80%;
   height: 20rem;
   max-height: 30vh;
-  border: 1px solid var(--ion-color-primary);
+  // border: 1px solid var(--ion-color-primary);
+  border: 1px solid #6CC57C;
   margin: auto;
   display: flex;
   justify-content: center;
