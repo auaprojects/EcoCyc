@@ -1,9 +1,150 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home-pro</ion-title>
+<!-- <ion-header class="ion-no-border">
+  <ion-toolbar color="primary" no-border>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary" no-border>
+    <!-- <ion-buttons slot="start">
+      <ion-button menu="main-menu">
+        <img src="../../assets/menu.svg" />
+      </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-menu-button size="large" menu="main-menu"><img src="../../assets/menu.svg" /></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon size="large" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button>
+        <img src="../../assets/notification.svg" />
+      </ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <div class="banner">
+    <img src="../../assets/images/header2.png" />
 
+    <div class="caption ion-padding">
+      Your activities <br>
+      on <span style="font-style: italic; color: #6CC57C; font-weight: bold;">EcoCyc</span>
+    </div>
+
+    <div class="search">
+      <ion-item lines="none" class="ion-no-padding">
+        <ion-icon slot="start" name="search-outline"></ion-icon>
+        <ion-input placeholder="Search requests"></ion-input>
+        <ion-button slot='end'>
+          <img src="../../assets/filter.svg" />
+        </ion-button>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="title">
+    <h2>Latest Posts</h2>
+
+    <p>See all</p>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      Today
+    </ion-list-header>
+
+    <ion-item-sliding>
+
+      <ion-item href="#">
+        <ion-avatar item-start>
+          <img src="assets/persons/person1.svg">
+        </ion-avatar>
+        <ion-label>
+          <h2>Plastic bottle disposal</h2>
+          <p>Hey, I am Inata</p>
+          <p>I have two bags of hunderd kgs full of plastic bottles ready to be collect.</p>
+        </ion-label>
+        <ion-note slot="end">
+          10:45 AM
+        </ion-note>
+        <ion-badge> Pending</ion-badge>
+  
+        <ion-item-options side="end">
+          <ion-item-option>
+            <ion-icon slot="icon-only" name="mail" md="md-text"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item>
+
+      
+
+      
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item href="#">
+        <ion-avatar item-start>
+          <img src="assets/persons/person3.svg">
+        </ion-avatar>
+        <ion-label>
+          <h2> Paper Bags</h2>
+          <p>Hey, I am Naruto</p>
+          <p>Disposable paper bags ready to be collected.</p>
+        </ion-label>
+        <ion-note slot="end">
+          00:15 AM
+        </ion-note>
+        <ion-badge style="background-color: red;"> Completed </ion-badge>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="mail" md="md-text"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item-sliding>
+      <ion-item href="#">
+        <ion-avatar item-start>
+          <img src="assets/persons/person2.svg">
+        </ion-avatar>
+        <ion-label>
+          <h2> Used clothes</h2>
+          <p>Hey, I am Madara</p>
+          <p>Good looking clothes available.</p>
+        </ion-label>
+        <ion-note slot="end">
+          01:30 AM
+        </ion-note>
+        <ion-badge> Pending</ion-badge>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="mail" md="md-text"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+  
+
+  
 </ion-content>
+

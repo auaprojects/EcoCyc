@@ -5,7 +5,7 @@ import { AuthGuard } from './auth/auth.guard';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
     canLoad: [AuthGuard]
   },
   {
@@ -15,31 +15,40 @@ const routes: Routes = [
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./auth/welcome/welcome.module').then( m => m.WelcomePageModule)
+    loadChildren: () => import('./auth/welcome/welcome.module').then(m => m.WelcomePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'signup',
-    loadChildren: () => import('./auth/signup/signup.module').then( m => m.SignupPageModule)
+    loadChildren: () => import('./auth/signup/signup.module').then(m => m.SignupPageModule)
   },
   {
-    path: 'detail/:id',
+    path: 'detail:id',
     // path: 'detail',
-    loadChildren: () => import('./request/detail/detail.module').then( m => m.DetailPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () => import('./request/detail/detail.module').then(m => m.DetailPageModule)
   },
   {
     path: 'new-request',
-    loadChildren: () => import('./request/new-request/new-request.module').then( m => m.NewRequestPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () => import('./request/new-request/new-request.module').then(m => m.NewRequestPageModule)
   },
   {
     path: 'home-pro',
-    loadChildren: () => import('./home-pro/home-pro.module').then( m => m.HomeProPageModule)
+    loadChildren: () => import('./home-pro/home-pro.module').then(m => m.HomeProPageModule)
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
+  },
+  {
+    path: 'conversation',
+    loadChildren: () => import('./conversation/conversation.module').then(m => m.ConversationPageModule)
+  },
+
+
+
 ];
 
 @NgModule({
