@@ -1,3 +1,4 @@
+import { User } from './../user';
 import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -31,27 +32,46 @@ export class SignupPage implements OnInit {
   }
 
   async onSignup(form: NgForm) {
+    const loginEl = await this.loadingCtrl.create({ keyboardClose: true, message: 'Signing Up...' });
+    loginEl.present();
     try {
       if (form.valid) {
-        const loginEl = await this.loadingCtrl.create({ keyboardClose: true, message: 'Signing Up...' });
-        loginEl.present();
-        const tmp = {
+        const tmp: User = {
           fullname: this.user.fullname,
           password: this.user.password,
           phone: this.user.phone,
+          role: 'user',
+          photoURL: '',
           email: this.user.email
         };
 
+        const users = await this.authService.getUsers().toPromise();
+        const currentUser = users.find((x => x.email === tmp.email) || (x => x.fullname === tmp.fullname));
+        // console.log(users);
+        // console.log(currentUser);
+        if (currentUser) {
+          const alertEl = await this.alertCtrl.create({
+            header: 'Sign Up Failed',
+            message: 'The user already exist!',
+            buttons: ['OK']
+          });
+          alertEl.present();
+          loginEl.dismiss();
+          return;
+        }
+
         const res = await this.authService.singUp(tmp).toPromise();
-        const idObj = await this.authService.setUserData(res).toPromise();
-        if (idObj.ok) {
+        // const idObj = await this.authService.setUserData(res).toPromise();
+        if (res.ok) {
           const userData = {
             ...tmp,
-            _id: idObj.id,
+            _id: res.id,
             // eslint-disable-next-line no-underscore-dangle
-            _rev: idObj.rev
+            _rev: res.rev
           };
 
+          // eslint-disable-next-line no-underscore-dangle
+          this.authService._user.next(userData);
           this.authService.setUser2Cpx(userData);
           loginEl.dismiss();
           this.router.navigate(['home']);
@@ -66,33 +86,12 @@ export class SignupPage implements OnInit {
           return;
         }
 
-        // const fbUser = await this.authService.signIn(this.user.email, this.user.password) as any;
-        // console.log(fbUser);
-        // const savedUser = await this.authService.getUserById(fbUser.user.uid).toPromise();
-
-        // this.loadingCtrl.create({ keyboardClose: true, message: 'Signing Up...' }).then(registerEl => {
-        //   registerEl.present();
-        //   const tmp = {
-        //     fullname: this.user.fullname,
-        //     password: this.user.password,
-        //     phone: this.user.phone,
-        //     email: this.user.email
-        //   };
-
-        //   this.authService.singUp(tmp).subscribe(() => {
-        //     registerEl.dismiss();
-        //     this.authService.SendVerificationMail();
-        //     this.router.navigate(['verify-email']);
-        //   }, error => {
-        //     registerEl.dismiss();
-        //     this.showAlert(error);
-        //   });
-        // });
       } else {
         this.showAlert('This form is not valid!!');
       }
     } catch (err) {
-      this.showAlert(err.error);
+      loginEl.dismiss();
+      this.showAlert(err.message);
     }
 
   }

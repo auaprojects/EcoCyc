@@ -52,10 +52,13 @@ export class LoginPage implements OnInit {
     const loginEl = await this.loadingCtrl.create({ keyboardClose: true, message: 'Logging in...' });
     loginEl.present();
     try {
-      const fbUser = await this.authservice.signIn(this.validationFormUser.get('email').value,
-        this.validationFormUser.get('password').value) as any;
+      // const fbUser = await this.authservice.signIn(this.validationFormUser.get('email').value,
+      //   this.validationFormUser.get('password').value) as any;
+      const email = this.validationFormUser.get('email').value;
+      const password = this.validationFormUser.get('password').value;
       const users = await this.authservice.getUsers().toPromise();
-      if (users.length === 0) {
+      const tmpUser = users.find(x => (x.email === email && x.password === password));
+      if (!tmpUser) {
         const alertEl = await this.alertCtrl.create({
           header: 'User doesn\'t exist',
           message: 'This user doesn\'t exist',
@@ -66,36 +69,24 @@ export class LoginPage implements OnInit {
         return;
       }
 
-      const savedUser = users.find(x => x.uid === fbUser.user.uid);
-      if (savedUser) {
-        const userData: User = {
-          uid: fbUser.user.uid,
-          // eslint-disable-next-line no-underscore-dangle
-          _id: savedUser._id,
-          // eslint-disable-next-line no-underscore-dangle
-          _rev: savedUser._rev,
-          email: savedUser.email,
-          fullname: savedUser.fullname,
-          displayName: savedUser.displayName,
-          photoURL: savedUser.photoURL,
-          emailVerified: savedUser.emailVerified,
-          role: savedUser.role
-        };
-        this.authservice.setUser2Cpx(userData);
-        loginEl.dismiss();
+      const userData: User = {
+        // eslint-disable-next-line no-underscore-dangle
+        _id: tmpUser._id,
+        // eslint-disable-next-line no-underscore-dangle
+        _rev: tmpUser._rev,
+        email: tmpUser.email,
+        fullname: tmpUser.fullname,
+        photoURL: tmpUser.photoURL,
+        role: tmpUser.role
+      };
+      this.authservice.setUser2Cpx(userData);
+      loginEl.dismiss();
+      if (userData.role === 'user') {
         this.router.navigate(['home']);
       } else {
-        const alertEl = await this.alertCtrl.create({
-          header: 'User doesn\'t exist',
-          message: 'This user doesn\'t exist',
-          buttons: ['OK']
-        });
-        alertEl.present();
-        loginEl.dismiss();
-        return;
+        this.router.navigate(['home-pro']);
       }
-      // const resp = await this.authservice.loginFireauth(value);
-      // console.log(resp);
+
     } catch (err) {
       loginEl.dismiss();
       // loginEl.present();

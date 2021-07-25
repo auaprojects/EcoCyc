@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <h5>New Message</h5>
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close" size="large" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar animated
+    [(ngModel)]="searchTerm"
+    (ionChange)="filterItems($event)"
+    placeholder="Send message To"
+  ></ion-searchbar>
+
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-list>
+    <!-- <ion-item *ngFor="let item of items">
+      {{ item.title }}
+    </ion-item> -->
+
+    <ion-item *ngFor="let item of items" (click)="goToConversation(item)">
+      <ion-avatar *ngIf="item?.photoURL !== ''" slot="start">
+        <img [src]="item?.photoURL">
+      </ion-avatar>
+
+      <ion-avatar *ngIf="item?.photoURL === ''" slot="start">
+        <img src="../../../assets/default-profile.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item?.fullname}}</h2>
+        <p>{{item?.email}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

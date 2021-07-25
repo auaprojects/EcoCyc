@@ -5,9 +5,10 @@ import { AuthService } from './../../auth/auth.service';
 import { RequestService } from './../request.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import * as _moment from 'moment';
 import { Request } from '../request';
+import { SharedService } from '../../shared/shared.service';
 
 @Component({
   selector: 'app-detail',
@@ -25,6 +26,8 @@ export class DetailPage implements OnInit {
     private router: Router,
     private loadingCtrl: LoadingController,
     private authService: AuthService,
+    private alertCtrl: AlertController,
+    private sharedService: SharedService,
     private storageService: StorageService,
     private requestService: RequestService
   ) { }
@@ -47,7 +50,6 @@ export class DetailPage implements OnInit {
       this.requestService.getRequestById(currentId).pipe(
         take(1),
         switchMap(res => {
-          console.log(res);
           this.currentRequest = {
             addressLine1: res.addressLine1,
             addressLine2: res.addressLine2,
@@ -79,6 +81,52 @@ export class DetailPage implements OnInit {
         console.log(user);
       });
     });
+  }
+
+  async changeStatus() {
+    const loadingEl = await this.loadingCtrl.create({ keyboardClose: true, message: 'Update in process...' });
+    loadingEl.present();
+
+    if (this.currentRequest.status === 'new') {
+      this.currentRequest.status = 'cancelled';
+      const tmp = {
+        doc: { ...this.currentRequest }
+      };
+
+      await this.requestService.updateRequest(tmp).toPromise();
+      loadingEl.dismiss();
+      this.sharedService.showAlert('Request Update', 'Status changed!');
+      this.requestService.setSubject(this.currentRequest);
+      this.router.navigate(['/home']);
+
+    } else if (this.currentRequest.status === 'cancelled') {
+      this.currentRequest.status = 'new';
+      const tmp = {
+        doc: { ...this.currentRequest }
+      };
+
+      await this.requestService.updateRequest(tmp).toPromise();
+      loadingEl.dismiss();
+      this.sharedService.showAlert('Request Update', 'Status changed!');
+      this.requestService.setSubject(this.currentRequest);
+      this.router.navigate(['/home']);
+    }
+  }
+
+  async pickUp() {
+    const loadingEl = await this.loadingCtrl.create({ keyboardClose: true, message: 'Saving in process...' });
+    loadingEl.present();
+
+    this.currentRequest.status = 'picked up';
+      const tmp = {
+        doc: { ...this.currentRequest }
+      };
+
+      await this.requestService.updateRequest(tmp).toPromise();
+      loadingEl.dismiss();
+      this.sharedService.showAlert('Request Selection', 'This request was successfully picked up');
+      this.requestService.setSubject(this.currentRequest);
+      this.router.navigate(['/home-pro']);
   }
 
 }

@@ -5,11 +5,6 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <!-- <ion-buttons>
-      <ion-button fill="solid" shape="round" routerLink="/home">
-        <ion-icon slot="icon-only" name="d-heart"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
   </div>
 
   <!-- REQUEST DETAIL-->
@@ -22,9 +17,13 @@
     <div class="card-content">
       <div class="card-title">
         <h1 class="ion-no-margin">{{currentRequest?.fullname}}</h1>
-        <!-- <div class="ion-no-margin"></div> -->
         <p class="ion-no-margin">
-          <ion-badge color="success" class="time">{{currentRequest?.status}}</ion-badge>
+          <ion-badge color="success" *ngIf="currentRequest?.status === 'new'" class="time">{{currentRequest?.status}}
+          </ion-badge>
+
+          <ion-badge color="danger" *ngIf="currentRequest?.status === 'cancelled'" class="time">
+            {{currentRequest?.status}}
+          </ion-badge>
         </p>
       </div>
     </div>
@@ -38,13 +37,7 @@
       <p style="color: #b9b9b9">{{currentRequest?.description}}</p>
     </div>
 
-    <!-- <div class="about">
-      <h5>Description</h5>
-      <p>{{currentRequest?.description}}</p>
-    </div> -->
-
     <div class="card-details">
-      <!-- <h3>Address: {{currentRequest?.addressLine1}}, {{currentRequest?.city}}</h3> -->
       <h5>pickup location <ion-icon name="location-outline"></ion-icon>
       </h5>
       <h6>{{currentRequest?.addressLine1}}</h6>
@@ -52,14 +45,12 @@
     </div>
 
     <div class="card-details">
-      <!-- <h3>Address: {{currentRequest?.addressLine1}}, {{currentRequest?.city}}</h3> -->
       <h5>target pickup time <ion-icon name="calendar-outline"></ion-icon>
       </h5>
       <h6>{{currentRequest?.pickupDate}}, {{currentRequest?.pickupTime}}</h6>
     </div>
 
     <div class="card-details">
-      <!-- <h3>Address: {{currentRequest?.addressLine1}}, {{currentRequest?.city}}</h3> -->
       <h5>about owner <ion-icon name="person-outline"></ion-icon>
       </h5>
       <h6>{{currentUser?.fullname}}</h6>
@@ -71,50 +62,32 @@
       <h5>Created since: <span style="font-weight: bold; font-style: italic;">{{currentRequest?.createdAt}}</span></h5>
     </div>
 
-
-    <!-- <div class="rates">
-      <div class="badge"><ion-icon name="d-time-forward"></ion-icon>30m</div>
-      <div class="badge"><ion-icon name="star-outline"></ion-icon>4.5</div>
-    </div> -->
     <div style="text-align: center; margin-top: 30px;">
-      <ion-button color="danger" *ngIf="connectedUser !== null" fill="solid" shape="round">
+      <ion-button color="danger" (click)="changeStatus()"
+        *ngIf="connectedUser !== null && currentRequest?.status === 'new' && connectedUser?.role === 'user'"
+        fill="solid" shape="round">
         Cancel the request
       </ion-button>
-    </div>
 
-    <div style="text-align: center; margin-top: 30px;">
-      <ion-button class="submit-btn" *ngIf="connectedUser === null" fill="solid" shape="round">
+      <ion-button color="primary" (click)="changeStatus()"
+        *ngIf="connectedUser !== null && currentRequest?.status === 'cancelled'" fill="solid" shape="round">
+        Activate the request
+      </ion-button>
+
+      <ion-button (click)="pickUp()" class="submit-btn"
+        *ngIf="connectedUser !== null && connectedUser?.role === 'pro' && currentRequest?.status !== 'picked up'"
+        fill="solid" shape="round">
         Select for Pickup
       </ion-button>
     </div>
 
+    <!-- <div style="text-align: center; margin-top: 30px;">
+      <ion-button class="submit-btn" *ngIf="connectedUser !== null && currentUser?.role === 'pro'" fill="solid"
+        shape="round">
+        Select for Pickup
+      </ion-button>
+    </div> -->
+
   </div>
 </ion-content>
 
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button fill="solid" shape="round" routerLink="/home">
-        <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Test Title</ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="solid" shape="round" color="light">
-        <ion-icon slot="icon-only" name="share-outline" color="primary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" scrollEvents="true">
-  <div #img class="header-image" [style.background-image]="'url(' + data?.img + ')'">
-  </div>
-
-  <ion-header collapse="condense" class="ion-no-border">
-    <ion-toolbar color="light">
-      <ion-title size="large">Title2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-</ion-content> -->

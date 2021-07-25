@@ -1,21 +1,5 @@
-<!-- <ion-header class="ion-no-border">
-  <ion-toolbar color="primary" no-border>
-    <ion-title>
-      Home
-    </ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary" no-border>
-    <!-- <ion-buttons slot="start">
-      <ion-button menu="main-menu">
-        <img src="../../assets/menu.svg" />
-      </ion-button>
-    </ion-buttons> -->
     <ion-buttons slot="start">
       <ion-menu-button size="large" menu="main-menu"><img src="../../assets/menu.svg" /></ion-menu-button>
     </ion-buttons>
@@ -23,17 +7,12 @@
     <ion-title>
 
     </ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-button>
         <ion-icon size="large" name="add-outline"></ion-icon>
       </ion-button>
-    </ion-buttons>
-
-    <!-- <ion-buttons slot="end">
-      <ion-button>
-        <img src="../../assets/notification.svg" />
-      </ion-button>
     </ion-buttons> -->
+
   </ion-toolbar>
 </ion-header>
 
@@ -42,7 +21,7 @@
     <img src="../../assets/images/header2.png" />
 
     <div class="caption ion-padding">
-      Your activities <br>
+      All requests <br>
       on <span style="font-style: italic; color: #6CC57C; font-weight: bold;">EcoCyc</span>
     </div>
 
@@ -58,93 +37,49 @@
   </div>
 
   <div class="title">
-    <h2>Latest Posts</h2>
+    <h2>Latest Requests</h2>
 
-    <p>See all</p>
   </div>
 
   <ion-list>
-    <ion-list-header>
-      Today
-    </ion-list-header>
 
-    <ion-item-sliding>
-
-      <ion-item href="#">
-        <ion-avatar item-start>
-          <img src="assets/persons/person1.svg">
+    <ion-item-sliding *ngFor="let request of requests">
+      <ion-item (click)="goToDetail(request)">
+        <ion-avatar item-start style="width: 60px; height: 60px;">
+          <img *ngIf="request.photoURL !== ''" [src]="request.photoURL">
+          <img *ngIf="request.photoURL === ''" src="../../assets/images/default.jpg">
         </ion-avatar>
-        <ion-label>
-          <h2>Plastic bottle disposal</h2>
-          <p>Hey, I am Inata</p>
-          <p>I have two bags of hunderd kgs full of plastic bottles ready to be collect.</p>
+        <ion-label style="margin-left: 15px;">
+          <h2 style="font-weight: bold;">{{request.fullname}}</h2>
+          <p style="color: #044723;">
+            <ion-icon name="location"></ion-icon>{{request.addressLine1}}, {{request.city}}
+          </p>
+          <p>{{request.description}}</p>
         </ion-label>
-        <ion-note slot="end">
-          10:45 AM
+        <ion-note style="color: black;" slot="end">
+          {{request.createdAt}}
         </ion-note>
-        <ion-badge> Pending</ion-badge>
-  
-        <ion-item-options side="end">
+        <ion-badge slot="end" *ngIf="request.status === 'new'" color="success">{{request.status}}</ion-badge>
+        <ion-badge slot="end" *ngIf="request.status === 'cancelled'" color="danger">{{request.status}}</ion-badge>
+        <ion-badge slot="end" *ngIf="request.status === 'picked up'" color="primary">{{request.status}}</ion-badge>
+
+        <!-- <ion-item-options side="end">
           <ion-item-option>
-            <ion-icon slot="icon-only" name="mail" md="md-text"></ion-icon>
+            <ion-icon slot="icon-only" name="mail" md="md-text">TOTO</ion-icon>
+          </ion-item-option>
+        </ion-item-options> -->
+
+        <ion-item-options side="end">
+          <ion-item-option color="primary" class="sliding">
+            <ion-icon slot="icon-only" name="keypad-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="primary">
+            <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>
       </ion-item>
-
-      
-
-      
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item href="#">
-        <ion-avatar item-start>
-          <img src="assets/persons/person3.svg">
-        </ion-avatar>
-        <ion-label>
-          <h2> Paper Bags</h2>
-          <p>Hey, I am Naruto</p>
-          <p>Disposable paper bags ready to be collected.</p>
-        </ion-label>
-        <ion-note slot="end">
-          00:15 AM
-        </ion-note>
-        <ion-badge style="background-color: red;"> Completed </ion-badge>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option>
-          <ion-icon slot="icon-only" name="mail" md="md-text"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item href="#">
-        <ion-avatar item-start>
-          <img src="assets/persons/person2.svg">
-        </ion-avatar>
-        <ion-label>
-          <h2> Used clothes</h2>
-          <p>Hey, I am Madara</p>
-          <p>Good looking clothes available.</p>
-        </ion-label>
-        <ion-note slot="end">
-          01:30 AM
-        </ion-note>
-        <ion-badge> Pending</ion-badge>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option>
-          <ion-icon slot="icon-only" name="mail" md="md-text"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
     </ion-item-sliding>
 
   </ion-list>
-  
 
-  
 </ion-content>
-

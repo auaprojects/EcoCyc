@@ -74,7 +74,9 @@
 
               <div class="additional-info">
 
-                <ion-badge color="success" class="time">{{request.status}}</ion-badge>
+                <ion-badge *ngIf="request.status === 'new'" color="success" class="time">{{request.status}}</ion-badge>
+                <ion-badge *ngIf="request.status === 'cancelled'" color="danger" class="time">{{request.status}}</ion-badge>
+                <ion-badge *ngIf="request.status === 'picked up'" color="primary" class="time">{{request.status}}</ion-badge>
               </div>
             </ion-card-content>
           </ion-card>

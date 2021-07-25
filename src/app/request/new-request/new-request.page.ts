@@ -154,14 +154,16 @@ export class NewRequestPage implements OnInit {
 
       const obj: Request = {
         ...this.requestForm.value,
-        uid: this.currentUser.uid,
+        // uid: this.currentUser.uid,
         // eslint-disable-next-line no-underscore-dangle
         userId: this.currentUser._id,
         status: 'new'
       };
 
-      console.log(this.requestForm.value);
       const tmp = await this.requestService.newRequest(obj).toPromise();
+      // this.requestService.newRequest(obj).toPromise();
+      console.log(obj);
+      this.requestService.setSubject({...obj, _id: tmp.id, _rev: tmp.rev});
       loginEl.dismiss();
       const toast = await this.toastController.create({
         message: `${obj.fullname} created!`,

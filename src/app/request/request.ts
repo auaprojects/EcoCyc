@@ -1,5 +1,5 @@
 export interface Request {
-  uid: string;
+  uid?: string;
   _id?: string;
   _rev?: string;
   category: string;

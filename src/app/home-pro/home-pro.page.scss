@@ -1,36 +1,36 @@
 ion-header {
     position: absolute;
-  
+
     ion-toolbar {
       padding-left: 14px;
       padding-right: 14px;
       --ion-color-primary: #6CC57C;
-  
+
       ion-title {
         --color: white;
         font-size: 18px;
       }
     }
   }
-  
+
   .default-left-padding {
     padding-left: 26px;
   }
-  
+
   .default-top-padding {
     padding-top: 26px !important;
   }
-  
+
   ion-content {
     --ion-background-color: #F4F5FA;
-  
+
     .banner {
       position: relative;
-  
+
       img {
         width: 100%;
       }
-  
+
       .caption {
         position: absolute;
         width: 100%;
@@ -41,7 +41,7 @@ ion-header {
         padding-left: 26px;
         padding-right: 26px;
       }
-  
+
       .search {
         position: absolute;
         bottom: -40px;
@@ -51,27 +51,27 @@ ion-header {
         padding: 5px 16px 5px 16px;
         border-radius: 10px;
         box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
-  
+
         ion-item {
           --inner-padding-end: 0 !important;
-  
+
           ion-input {
             --placeholder-color: #212121 !important;
             --placeholder-opacity: 0.5;
             --color: #21212150 !important;
           }
-  
+
           ion-icon {
             color: #21212150 !important;
             margin-right: 10px;
           }
-  
+
           ion-button {
             height: 35px;
             margin-right: 0 !important;
             --ion-color-primary: #6CC57C;
             --box-shadow: none;
-  
+
             img {
               transform: rotateZ(90deg);
             }
@@ -79,13 +79,13 @@ ion-header {
         }
       }
     }
-  
+
     .title {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 42px 26px 16px 26px;
-  
+
       h2 {
         margin: 0;
         font-size: 20px;
@@ -93,7 +93,7 @@ ion-header {
         color: #364f6b;
         // color: #6CC57C
       }
-  
+
       p {
         margin: 0;
         font-size: 14px;
@@ -101,44 +101,44 @@ ion-header {
         // color: #6CC57C
       }
     }
-  
+
     .event-slider {
       ion-slide {
         width: 60%;
         margin-right: 30px;
-  
+
         ion-col {
           padding-left: 0;
-  
+
           ion-card {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.16);
             margin-left: 0;
             margin-top: 0;
-  
+
             ion-card-header {
               img {
                 width: 100%;
               }
             }
-  
+
             ion-card-content {
               padding-top: 13px;
-  
+
               .date {
                 color: #364f6b;
                 font-size: 10px;
                 margin-bottom: 5px;
               }
-  
+
               .eventname {
                 color: #364f6b;
                 font-size: 14px;
                 font-weight: bold;
                 margin-bottom: 5px;
               }
-  
+
               .location {
                 display: flex;
                 align-items: center;
@@ -151,25 +151,25 @@ ion-header {
         }
       }
     }
-  
+
     .live-event {
       border-radius: 10px;
       box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
       margin: 0 26px 26px 26px;
       display: flex;
       justify-content: space-between;
-  
+
       img {
         border-radius: 10px 0 0 10px;
         object-fit: cover;
       }
-  
+
       .info {
         padding: 10px;
         width: 100%;
         display: flex;
         justify-content: space-between;
-  
+
         .content {
           h6 {
             color: #364f6b;
@@ -178,7 +178,7 @@ ion-header {
             margin-bottom: 5px;
             margin-top: 0px;
           }
-  
+
           .location {
             display: flex;
             align-items: center;
@@ -187,12 +187,12 @@ ion-header {
             margin-bottom: 5px;
             margin-top: 0;
           }
-  
+
           .stats {
             display: flex;
             margin-bottom: 5px;
             margin-top: 0;
-  
+
             span {
               display: flex;
               align-items: center;
@@ -202,12 +202,12 @@ ion-header {
             }
           }
         }
-  
+
         .indicator {
           display: flex;
           justify-content: center;
           align-items: center;
-  
+
           div {
             background: #ffe6e6;
             border-radius: 12px;
@@ -218,4 +218,10 @@ ion-header {
       }
     }
   }
-  
+
+  .sliding {
+    --ion-color-primary: #6CC57C;
+    ion-icon {
+      --ion-color-primary: #6CC57C;
+    }
+  }
