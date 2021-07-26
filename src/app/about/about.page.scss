@@ -1,0 +1,32 @@
+ion-header {
+    position: absolute;
+  
+    ion-toolbar {
+      padding-left: 14px;
+      padding-right: 14px;
+      --ion-color-primary: #6cc57c;
+  
+      ion-title {
+        --color: white;
+        font-size: 18px;
+      }
+    }
+  }
+
+  img{
+      width: 100%;
+      height: auto;
+      border-radius: 0%;
+      position: relative;
+  }
+ p{
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top : 80px
+    
+    
+}
+h3{
+    font-weight: bold;
+}
