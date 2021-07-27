@@ -45,10 +45,16 @@ export class NewRequestPage implements OnInit {
   public image: File = null;
   cannotDecrease = false;
   categories: any[] = [
-    { key: 1, value: 'Appliances' },
+    { key: 1, value: 'Plastic' },
     { key: 2, value: 'Electronics' },
     { key: 3, value: 'Furniture' },
-    { key: 4, value: 'Construction & Demolition' }
+    { key: 4, value: 'Construction & Demolition' },
+    { key: 5, value: 'Chemical' },
+    { key: 6, value: 'Automotive' },
+    { key: 7, value: 'Clothing' },
+    { key: 8, value: 'Organic Waste' },
+    { key: 9, value: 'Appliances' },
+    { key: 10, value: 'Paper' }
   ];
 
   data = '../../../assets/new-request.jpg';
