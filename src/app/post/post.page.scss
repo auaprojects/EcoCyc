@@ -1,0 +1,29 @@
+ion-header {
+  position: relative;
+
+  ion-toolbar {
+    padding-left: 14px;
+    padding-right: 14px;
+    --ion-color-primary: #6cc57c;
+
+    ion-title {
+      --color: white;
+      font-size: 18px;
+    }
+  }
+}
+
+ion-content ion-card {
+  // background: yellow!important;
+  width: 100%;
+}
+
+ion-card {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+ion-item {
+  --padding-start: 5px;
+  --inner-padding-end: 0px;
+}

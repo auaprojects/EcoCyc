@@ -58,9 +58,11 @@ ion-content {
       .chat {
         display: flex;
         flex-direction: column;
+
         .messages {
           display: flex;
           flex-direction: column;
+
           .message {
             border-radius: 18px;
             padding: 18px 20px;
@@ -69,6 +71,7 @@ ion-content {
             font-size: 0.9rem;
           }
         }
+
         .yours {
           align-items: flex-start;
           span {
@@ -76,10 +79,12 @@ ion-content {
             color: #adadad;
             margin-left: 40px;
           }
+
           .message {
             background: #eee;
             position: relative;
           }
+
           .message.last {
             &:before {
               content: "";
@@ -103,6 +108,7 @@ ion-content {
               border-bottom-right-radius: 10px;
             }
           }
+
           .last-message-other {
             display: flex;
             align-items: flex-start;
@@ -115,6 +121,7 @@ ion-content {
             }
           }
         }
+
         .mine {
           align-items: flex-end;
           span {
@@ -127,6 +134,7 @@ ion-content {
               font-size: 1.1rem;
             }
           }
+
           .message {
             color: #fff;
             margin-left: 25%;

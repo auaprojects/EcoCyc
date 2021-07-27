@@ -2,109 +2,42 @@
   <div class="header ion-padding">
     <div class="info">
       <ion-icon name="chevron-back-outline" routerLink="/chat"></ion-icon>
-      <ion-avatar>
-        <img src="assets/persons/person1.svg">
+      <ion-avatar slot="start">
+        <img src="../../../assets/default-profile.png">
       </ion-avatar>
       <span class="details">
-        <h1>Hello</h1>
-        <p>Online</p>
-      </span>  
+        <h1>{{receiver?.fullname}}</h1>
+        <p>{{receiver?.phone}}</p>
+      </span>
     </div>
   </div>
   <div class="conversation ion-padding">
     <div class="chat-section" id="chat">
       <div class="chat">
-        <div class="yours messages">
-          <div class="message other">
-            Hey!
-          </div>
-          <div class="message other">
-            You there?
-          </div>
-          <div class="last-message-other">
-            <ion-avatar>
-              <img src="assets/persons/person2.svg" alt="">
-            </ion-avatar>
-            <div class="message last">
-              Hello, how is going?
+        <div *ngFor="let message of messages">
+
+          <div *ngIf="message.type === 'sender'" class="mine messages">
+            <div class="message">
+              {{message.message}}
             </div>
+            <span>
+              <ion-icon name="checkmark-done-outline"></ion-icon>{{message.createdAt | timeAgo}}
+            </span>
           </div>
-          <span>1:14</span>
-        </div>
-        <div class="mine messages">
-          <div class="message">
-            Great thanks
+
+          <div *ngIf="message.type === 'receiver'" class="yours messages">
+            <div class="message">
+              {{message.message}}
+            </div>
+            <span>{{message.createdAt | timeAgo}}</span>
           </div>
-          <div class="message last">
-            How about you?
-          </div>
-          <span>
-            <ion-icon name="checkmark-done-outline"></ion-icon>1:44 PM
-          </span>
         </div>
 
-        <div class="yours messages">
-          <div class="message other">
-            Hey!
-          </div>
-          <div class="message other">
-            You there?
-          </div>
-          <div class="last-message-other">
-            <ion-avatar>
-              <img src="assets/persons/person2.svg" alt="">
-            </ion-avatar>
-            <div class="message last">
-              Hello, how is going?
-            </div>
-          </div>
-          <span>1:14</span>
-        </div>
-        <div class="mine messages">
-          <div class="message">
-            Great thanks
-          </div>
-          <div class="message last">
-            How about you?
-          </div>
-          <span>
-            <ion-icon name="checkmark-done-outline"></ion-icon>1:44 PM
-          </span>
-        </div>
-
-        <div class="yours messages">
-          <div class="message other">
-            Hey!
-          </div>
-          <div class="message other">
-            You there?
-          </div>
-          <div class="last-message-other">
-            <ion-avatar>
-              <img src="assets/persons/person2.svg" alt="">
-            </ion-avatar>
-            <div class="message last">
-              Hello, how is going?
-            </div>
-          </div>
-          <span>1:14</span>
-        </div>
-        <div class="mine messages">
-          <div class="message">
-            Great thanks
-          </div>
-          <div class="message last">
-            How about you?
-          </div>
-          <span>
-            <ion-icon name="checkmark-done-outline"></ion-icon>1:44 PM
-          </span>
-        </div>
       </div>
     </div>
     <div class="message-input">
-      <ion-input placeholder="Type your message..."></ion-input>
-      <div class="send-button">
+      <ion-input [(ngModel)]="message" (keyup)="eventHandler($event)" placeholder="Type your message..."></ion-input>
+      <div (click)="sendMessage()" class="send-button">
         <ion-icon name="send-sharp"></ion-icon>
       </div>
     </div>

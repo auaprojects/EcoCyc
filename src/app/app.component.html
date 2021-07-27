@@ -23,12 +23,12 @@
       </div>
 
       <ion-list class="menu-items" lines="none">
-        <ion-menu-toggle *ngIf="currentUser?.role === 'user'">
+        <ion-menu-toggle *ngIf="!isPro">
           <ion-item routerLink="/home" routerLinkActive="selected" routerDirection="root">
             <ion-icon name="today-outline"></ion-icon> Home
           </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle *ngIf="currentUser?.role === 'pro'">
+        <ion-menu-toggle *ngIf="isPro">
           <ion-item routerLink="/home-pro" routerLinkActive="selected" routerDirection="root">
             <ion-icon name="today-outline"></ion-icon> Home
           </ion-item>

@@ -32,7 +32,7 @@ export class MessageService {
   messages(): Observable<Message[]> {
     return this.http.get(`${this.apiURL}messages`).pipe(map((res: any) => {
       if (res) {
-        return res.requests;
+        return res.messages;
       }
     }));
   }

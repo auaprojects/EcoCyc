@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,6 +16,7 @@ import { PostPage } from './post.page';
     IonicModule,
     PostPageRoutingModule
   ],
-  declarations: [PostPage]
+  declarations: [PostPage, TimeAgoPipe],
+  exports: [TimeAgoPipe]
 })
 export class PostPageModule {}

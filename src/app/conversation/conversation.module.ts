@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ConversationPageRoutingModule } from './conversation-routing.module';
 
 import { ConversationPage } from './conversation.page';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ConversationPage } from './conversation.page';
     IonicModule,
     ConversationPageRoutingModule
   ],
-  declarations: [ConversationPage]
+  declarations: [ConversationPage, TimeAgoPipe],
+  exports: [TimeAgoPipe]
 })
 export class ConversationPageModule {}

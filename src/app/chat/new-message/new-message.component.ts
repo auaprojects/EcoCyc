@@ -28,38 +28,42 @@ export class NewMessageComponent implements OnInit {
 
   ngOnInit() {
     this.storageService.getObject('authData').then(user => {
-      this.currentUser = user;
-    });
+      if (user === null) {
+        this.router.navigate(['/login']);
+      } else {
+        this.currentUser = user;
 
-    this.loadingCtrl.create({ keyboardClose: true, message: 'Loading Users...' }).then(loadingEl => {
-      loadingEl.present();
-      this.authService.getUsers().subscribe(res => {
-        console.log(res);
-        loadingEl.dismiss();
-        this.items = res.filter(x => x.email !== this.currentUser.email);
-        // res.map(t => {
-        //   return {
+        this.loadingCtrl.create({ keyboardClose: true, message: 'Loading Users...' }).then(loadingEl => {
+          loadingEl.present();
+          this.authService.getUsers().subscribe(res => {
+            console.log(res);
+            loadingEl.dismiss();
+            this.items = res.filter(x => x.email !== this.currentUser.email);
+            // res.map(t => {
+            //   return {
 
-        //   }
-        // })
-      });
-      // this.userService.getUsers().subscribe(users => {
-      //   this.items = users.map((u: any) => {
-      //     // return {
-      //     //   firstname: u.payload.doc.data().firstname,
-      //     //   lastname: u.payload.doc.data().lastname,
-      //     //   title: u.payload.doc.data().title,
-      //     //   photoURL: u.payload.doc.data().photoURL,
-      //     //   email: u.payload.doc.data().email,
-      //     //   uid: u.payload.doc.id
-      //     // };
-      //   }).filter(id => id.uid !== this.currentUser.uid);
-      //   loadingEl.dismiss();
-      //   this.items1 = this.items;
-      // }, err => {
-      //   loadingEl.dismiss();
-      //   console.log(err);
-      // });
+            //   }
+            // })
+          });
+          // this.userService.getUsers().subscribe(users => {
+          //   this.items = users.map((u: any) => {
+          //     // return {
+          //     //   firstname: u.payload.doc.data().firstname,
+          //     //   lastname: u.payload.doc.data().lastname,
+          //     //   title: u.payload.doc.data().title,
+          //     //   photoURL: u.payload.doc.data().photoURL,
+          //     //   email: u.payload.doc.data().email,
+          //     //   uid: u.payload.doc.id
+          //     // };
+          //   }).filter(id => id.uid !== this.currentUser.uid);
+          //   loadingEl.dismiss();
+          //   this.items1 = this.items;
+          // }, err => {
+          //   loadingEl.dismiss();
+          //   console.log(err);
+          // });
+        });
+      }
     });
   }
 
@@ -89,7 +93,8 @@ export class NewMessageComponent implements OnInit {
       }
     };
 
-    this.router.navigate(['conversation/', item.uid], navigationExtras);
+    // this.router.navigate(['/conversation', item.uid], navigationExtras);
+    this.router.navigate(['/conversation'], navigationExtras);
   }
 
 }

@@ -33,6 +33,7 @@
     "moment": "^2.29.1",
     "node-modules": "^1.0.1",
     "rxjs": "~6.6.0",
+    "time-ago-pipe": "^1.3.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
